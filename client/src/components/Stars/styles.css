@@ -1,13 +1,31 @@
 
+.starRatingWidthContainer{
+  float: left;
+  width: 100px;
+  height: 23px;
+  
+}
+
 .starRating {
   color: #f37f00 !important;
   font-weight: bold;
   font-size: 20px;
   font-family: 'BVCustom', 'times new roman';
-  float: left;
-  margin-top: 20px;
+  position: absolute;
+  
+  z-index: 1;
+  
+  
 }
-
+.starRatingEmpty {
+  color: grey;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'BVCustom', 'times new roman';
+  position: absolute;
+  
+  z-index: 0;
+}
 .rating{
   font-family: "Arial", sans-serif;
   font-weight: 400;

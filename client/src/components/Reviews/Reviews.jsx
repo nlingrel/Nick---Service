@@ -10,7 +10,7 @@ class Reviews extends React.Component{
     render(){
         return (
         <div className= "reviews container">
-          Reviews rendering from Reviews Module
+         
           <div>
               <Stars />
           </div>

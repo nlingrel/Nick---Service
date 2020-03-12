@@ -4,18 +4,28 @@ import styles from './styles.css'
 class Stars extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+          rating: 5
+        }
     }
-
+    
     render(){
         return(
             <div>
-              <span className= {styles.starRating}>&real; &real; &real; &real; &real;</span>  
-              <div className= {styles.ratingRatioNumber}>
-                 <span className= {styles.rating}>
-                    <span>
-                      4.9
-                    </span>
-                 </span>
+              <div className= {`starRatingWidthContainer ${styles.starRatingWidthContainer}`}>
+                <span className= {`starRating ${styles.starRating}` } style={{clipPath: `inset(0% ${ 100 - this.state.rating * 20}% 0% 0%)`}}>
+                  &real; &real; &real; &real; &real;
+                </span>  
+                <span className= {`starRatingEmpty ${styles.starRatingEmpty}`}>
+                  &real; &real; &real; &real; &real;
+                </span>
+              </div>
+              <div className= {`ratingRatioNumber ${styles.ratingRatioNumber}`}>
+                <span className= {`rating ${styles.rating}`}>
+                  <span>
+                    {this.state.rating}
+                  </span>
+                </span>
               </div>
             </div>
         )
