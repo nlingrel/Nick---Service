@@ -7,12 +7,12 @@ const path = require('path')
 const app = express()
 const port = 8084
 
+app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
-app.use(cors())
 
-app.use(express.static(path.join(__dirname,"../client/dist")));
+app.use(express.static(path.join(__dirname,"client/dist")));
 
 app.get('/', (req, res) => res.send('Review service'))
 
