@@ -5,7 +5,7 @@ class Stars extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-          rating: 5
+          ratio: 3.2
         }
     }
     
@@ -23,7 +23,7 @@ class Stars extends React.Component{
               <div className= {`ratingRatioNumber ${styles.ratingRatioNumber}`}>
                 <span className= {`rating ${styles.rating}`}>
                   <span>
-                    {this.state.rating}
+                    {this.state.ratio}
                   </span>
                 </span>
               </div>

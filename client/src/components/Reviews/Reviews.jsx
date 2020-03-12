@@ -1,5 +1,6 @@
 import React from 'react'
-import Stars from '../Stars/Stars.jsx'
+import Masthead from '../Masthead/Masthead';
+
 
 
 class Reviews extends React.Component{
@@ -12,7 +13,7 @@ class Reviews extends React.Component{
         <div className= "reviews container">
          
           <div>
-              <Stars />
+              <Masthead />
           </div>
         </div>
         )
