@@ -1,4 +1,6 @@
 import React from 'react'
+import Stars from '../Stars/Stars.jsx'
+
 
 class Reviews extends React.Component{
     constructor(props){
@@ -7,8 +9,11 @@ class Reviews extends React.Component{
 
     render(){
         return (
-        <div>
+        <div className= "reviews container">
           Reviews rendering from Reviews Module
+          <div>
+              <Stars />
+          </div>
         </div>
         )
     }

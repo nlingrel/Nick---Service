@@ -1,0 +1,28 @@
+
+.starRating {
+  color: #f37f00 !important;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'BVCustom', 'times new roman';
+  float: left;
+  margin-top: 20px;
+}
+
+.rating{
+  font-family: "Arial", sans-serif;
+  font-weight: 400;
+  color: #231f20 !important;
+  line-height: 19.5px;
+  font-size: 13px;
+  margin: .25em;
+  box-sizing: content-box;
+  height: 19px;
+  margin-top: 3.25px;
+  margin-bottom: 3.25px;
+}
+
+.ratingRatioNumber{
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
