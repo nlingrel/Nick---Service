@@ -14,6 +14,9 @@ class SearchBar extends React.Component{
         return (
             <div className={`searchBar ${styles.searchBar}`}>
                 <div className= {`searchBarSubmission ${styles.searchBarSubmission}`}>
+                  <span className={`searchControlIcon ${styles.searchControlIcon}`}>
+                      &#x3D8;
+                  </span>
                   <input 
                     className= {`searchText ${styles.searchText}`}
                     type="text" 

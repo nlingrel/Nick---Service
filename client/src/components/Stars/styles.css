@@ -8,7 +8,7 @@
 }
 
 .starRating {
-  color: #f37f00 !important;
+  color: rgb(243, 127, 0);
   font-weight: bold;
   font-size: 20px;
   font-family: 'BVCustom', 'times new roman';
@@ -19,11 +19,12 @@
   
 }
 .starRatingEmpty {
-  color: grey;
+  color: rgb(135, 135, 135);
   font-weight: bold;
   font-size: 20px;
   font-family: 'BVCustom', 'times new roman';
   position: absolute;
+  opacity: .65;
   
   z-index: 0;
 }
@@ -35,6 +36,7 @@
   font-size: 13px;
   
   
+  
   height: 19px;
   margin-top: 0.25em !important;
   
@@ -42,10 +44,26 @@
   padding-right: 10px;
 
   border: 1px solid transparent;
+
+  border-right-style: solid !important;
+  border-right-color: rgb(204, 204, 204) !important;
+  border-right-width: 1px !important;
 }
 
 .ratingRatioNumber{
     display: inline-block;
     padding-right: 5px;
     vertical-align: middle;
+}
+
+.ratingRatioCount{
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 5px;
+}
+
+.ratingCountLabel{
+   color: rgb(243, 97, 0);
+   font-family: "Arial", sans-serif;
+   font-size: 13px;
 }
