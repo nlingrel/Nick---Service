@@ -1,21 +1,19 @@
-import React from 'react'
-import styles from './styles.css'
-import Stars from '../Stars/Stars.jsx'
-import SearchBar from '../SearchBar/SearchBar.jsx'
+import React from "react"
+import styles from "./styles.css"
+import Stars from "../Stars/Stars.jsx"
+import SearchBar from "../SearchBar/SearchBar.jsx"
 
-function Masthead (props) {
-  return(
-
-      <div className = {`masthead ${styles.masthead}`}>
-          <div className = {`summaryBar ${styles.summaryBar}`}>
-              <Stars />
-          </div>
-          <div>
-              <SearchBar />
-          </div>
+function Masthead(props) {
+  return (
+    <div className={`masthead2 ${styles.masthead2}`}>
+      <div className={`productSummaryBar2 ${styles.productSummaryBar2}`}>
+        <Stars />
       </div>
+      <div className={`searchBar2 ${styles.searchBar2}`}>
+        <SearchBar />
+      </div>
+    </div>
   )
-  
 }
 
-export default Masthead;
+export default Masthead
