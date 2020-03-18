@@ -7,7 +7,7 @@ function Masthead(props) {
   return (
     <div className={`masthead2 ${styles.masthead2}`}>
       <div className={`productSummaryBar2 ${styles.productSummaryBar2}`}>
-        <Stars />
+        <Stars ratio={props.ratio} ratioCount={props.ratioCount} plural={props.plural} />
       </div>
       <div className={`searchBar2 ${styles.searchBar2}`}>
         <SearchBar />

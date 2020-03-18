@@ -1,47 +1,28 @@
 import React from 'react'
 import styles from './styles.css'
+import StarRating from '../StarRating/StarRating'
 
-class Stars extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-          ratio: 4,
-          ratioCount: 1,
-          plural: {
-            true: 'Reviews',
-            false: 'Review'
-          }
-        }
-    }
-    
-    render(){
-        return(
-            <div>
-              <div className= {`starRatingWidthContainer ${styles.starRatingWidthContainer}`}>
-                <span className= {`starRating ${styles.starRating}` } style={{clipPath: `inset(0% ${ 100 - this.state.ratio * 20}% 0% 0%)`}}>
-                  &real; &real; &real; &real; &real;
-                </span>  
-                <span className= {`starRatingEmpty ${styles.starRatingEmpty}`}>
-                  &real; &real; &real; &real; &real;
-                </span>
-              </div>
-              <div className= {`ratingRatioNumber ${styles.ratingRatioNumber}`}>
-                <span className= {`rating ${styles.rating}`}>
-                  <span>
-                    {this.state.ratio}
-                  </span>
-                </span>
-              </div>
-              <div className= {`ratingRatioCount ${styles.ratingRatioCount}`}>
-                <span className= {`ratingCountLabel ${styles.ratingCountLabel}`}>
-                  <span>
-                    {`${this.state.ratioCount} `}{ this.state.ratioCount !== 1? `${this.state.plural.true}` : `${this.state.plural.false}` }
-                  </span>
-                </span>
-              </div>
-            </div>
-        )
-    }
+function Stars(props) {
+  return (
+    <div>
+      <StarRating ratio={props.ratio} />
+      <div className={`ratingRatioNumber ${styles.ratingRatioNumber}`}>
+        <span className={`rating ${styles.rating}`}>
+          <span>
+            {props.ratio}
+          </span>
+        </span>
+      </div>
+      <div className={`ratingRatioCount ${styles.ratingRatioCount}`}>
+        <span className={`ratingCountLabel ${styles.ratingCountLabel}`}>
+          <span>
+            {`${props.ratioCount} `}{props.ratioCount !== 1 ? `${props.plural.true}` : `${props.plural.false}`}
+          </span>
+        </span>
+      </div>
+    </div>
+  );
+
 }
 
 export default Stars;

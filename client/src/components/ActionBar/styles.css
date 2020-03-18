@@ -71,6 +71,16 @@
   border-radius: 0 !important;
   zoom: 1 !important;
 }
+.actionBar2:before{
+  content: "" !important;
+  display: table !important;
+}
+
+.actionBar2:after{
+  clear: both !important;
+  content: "" !important;
+  display: table !important;
+}
 
 .actionBarHeader2 {
   -webkit-tap-highlight-color: #349edb;
