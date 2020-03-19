@@ -30,14 +30,10 @@ class Reviews extends React.Component {
         <div className={`contentSearch2 ${styles.contentSearch2}`}>
           <Masthead ratio={this.state.ratio} ratioCount={this.state.ratioCount} plural={this.state.plural} />
         </div>
-        <div
-          className={`$ contentListContainer2 ${styles.contentListContainer2}`}
-        >
+        <div className={`$ contentListContainer2 ${styles.contentListContainer2}`}>
           <Header ratio={this.state.ratio} ratioCount={this.state.ratioCount} reviewCounts={this.state.reviewCountByRating} />
         </div>
-        <div>
-          <ReviewList />
-        </div>
+        <ReviewList />
       </div>
     )
   }

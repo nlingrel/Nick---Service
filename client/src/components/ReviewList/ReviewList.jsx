@@ -14,10 +14,9 @@ class ReviewList extends React.Component {
 
     render() {
         return (
-            <div>
-                ReviewList
+            <ol className={`contentListReviews2 ${styles.contentListReviews2}`}>
                 <ReviewItem rating={this.state.rating} />
-            </div>
+            </ol>
         )
     }
 

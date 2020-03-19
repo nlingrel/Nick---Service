@@ -1,0 +1,51 @@
+import React from "react"
+import styles from "./styles.css"
+import StarRating from "../StarRating/StarRating"
+import Badge from "./Badge"
+import ContentDetails from "./ContentDetails"
+
+function AuthorProfileOffset(props) {
+    return (
+        <div className={`contentItemAuthorProfileOffset2 ${styles.contentItemAuthorProfileOffset2}`}>
+            <div className={`contentContainer2 ${styles.contentContainer2}`}>
+                <div className={`contentCore2 ${styles.contentCore2}`}>
+                    <div className={`contentHeader2 ${styles.contentHeader2}`}>
+                        <div className={`contentDataSummary2 ${styles.contentDataSummary2}`}>
+                            <div className={`contentBadgesContainer2 ${styles.contentBadgesContainer2}`}>
+                                <Badge badges={props.badges.sweepstakes} />
+                                <Badge badges={props.badges.verified} />
+                            </div>
+                            <div className={`contentHeaderMeta2 ${styles.contentHeaderMeta2}`}>
+                                <span>
+                                    <StarRating ratio={props.rating} />
+                                </span>
+                                <div className={`contentMetaWrapper2 ${styles.contentMetaWrapper2}`}>
+                                    <div className={`contentMeta2 ${styles.contentMeta2}`}>
+                                        <div className={`contentReferenceData2 ${styles.contentReferenceData2}`}>
+                                            <div className={`contentDatetime2 ${styles.contentDatetime2}`}>
+                                                <span className={`contentDateTimeDot2 ${styles.contentDateTimeDot2}`}>
+                                                    .
+                                            </span>
+                                                <span className={`contentDateTimeStamp2 ${styles.contentDateTimeStamp2}`}>
+                                                    2 hours ago &nbsp;
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={`contentTitleContainer2 ${styles.contentTitleContainer2}`}>
+                                <h3 className={`contentTitle2 ${styles.contentTitle2}`}>
+                                    Lorem Ipsum Excellent product Lorem Ipsum
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <ContentDetails />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default AuthorProfileOffset
