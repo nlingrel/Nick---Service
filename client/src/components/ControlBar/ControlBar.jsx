@@ -1,5 +1,6 @@
 import React from "react"
 import styles from "./styles.css"
+import PaginationButtons from "./PaginationButtons"
 
 function ControlBar(props) {
     return (
@@ -8,8 +9,8 @@ function ControlBar(props) {
                 <div className={`contentPaginationPagesCurrent2 ${styles.contentPaginationPagesCurrent2}`}>
                     1-10 of {props.ratioCount} Reviews
                 </div>
-
             </div>
+            <PaginationButtons />
         </div>
     )
 }

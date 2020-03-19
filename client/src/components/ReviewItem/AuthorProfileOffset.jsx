@@ -3,6 +3,7 @@ import styles from "./styles.css"
 import StarRating from "../StarRating/StarRating"
 import Badge from "./Badge"
 import ContentDetails from "./ContentDetails"
+import FeedbackVote from "../FeedbackVote/FeedbackVote"
 
 function AuthorProfileOffset(props) {
     return (
@@ -24,7 +25,7 @@ function AuthorProfileOffset(props) {
                                         <div className={`contentReferenceData2 ${styles.contentReferenceData2}`}>
                                             <div className={`contentDatetime2 ${styles.contentDatetime2}`}>
                                                 <span className={`contentDateTimeDot2 ${styles.contentDateTimeDot2}`}>
-                                                    .
+                                                    ·
                                             </span>
                                                 <span className={`contentDateTimeStamp2 ${styles.contentDateTimeStamp2}`}>
                                                     2 hours ago &nbsp;
@@ -43,6 +44,13 @@ function AuthorProfileOffset(props) {
                     </div>
                     <ContentDetails />
                 </div>
+            </div>
+            <div className={`contentActionsContainer2 ${styles.contentActionsContainer2}`}>
+                <FeedbackVote />
+            </div>
+            <div className={`inlineFormContainer2 ${styles.inlineFormContainer2}`}></div>
+            <div className={`scondaryContentList2 ${styles.scondaryContentList2}`}>
+
             </div>
         </div>
     )

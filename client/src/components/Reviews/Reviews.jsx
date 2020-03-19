@@ -3,6 +3,7 @@ import Masthead from "../Masthead/Masthead"
 import Header from "../Header/Header"
 import styles from "./styles.css"
 import ReviewList from "../ReviewList/ReviewList";
+import ControlBar from "../ControlBar/ControlBar";
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -34,6 +35,9 @@ class Reviews extends React.Component {
           <Header ratio={this.state.ratio} ratioCount={this.state.ratioCount} reviewCounts={this.state.reviewCountByRating} />
         </div>
         <ReviewList />
+        <div className={`contentPagination2 ${styles.contentPagination2}`}>
+          <ControlBar ratioCount={this.state.ratioCount} />
+        </div>
       </div>
     )
   }
