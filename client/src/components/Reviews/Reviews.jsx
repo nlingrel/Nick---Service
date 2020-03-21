@@ -4,6 +4,8 @@ import Header from "../Header/Header"
 import styles from "./styles.css"
 import ReviewList from "../ReviewList/ReviewList";
 import ControlBar from "../ControlBar/ControlBar";
+import axios from "axios"
+
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -18,11 +20,35 @@ class Reviews extends React.Component {
         "2": { star: 2, count: 1 },
         "1": { star: 1, count: 7 },
       },
+
       plural: {
         true: 'Reviews',
         false: 'Review'
-      }
+      },
+      product: '0857339583',
+      reviews: []
     };
+  }
+
+  componentDidMount() {
+    //let id = 0857339583;
+    const params = { productID: this.state.product }
+    console.log(params)
+    window.fetch(`http://localhost:8084/reviews?productID=${encodeURIComponent(params.productID)}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result)
+          this.setState({
+            reviews: result
+          });
+        },
+        error => {
+          this.setState({
+            error
+          });
+        }
+      )
   }
 
   render() {
@@ -34,7 +60,7 @@ class Reviews extends React.Component {
         <div className={`$ contentListContainer2 ${styles.contentListContainer2}`}>
           <Header ratio={this.state.ratio} ratioCount={this.state.ratioCount} reviewCounts={this.state.reviewCountByRating} />
         </div>
-        <ReviewList />
+        <ReviewList reviews={this.state.reviews} />
         <div className={`contentPagination2 ${styles.contentPagination2}`}>
           <ControlBar ratioCount={this.state.ratioCount} />
         </div>
