@@ -37,12 +37,12 @@ function AuthorProfileOffset(props) {
                             </div>
                             <div className={`contentTitleContainer2 ${styles.contentTitleContainer2}`}>
                                 <h3 className={`contentTitle2 ${styles.contentTitle2}`}>
-                                    Lorem Ipsum Excellent product Lorem Ipsum
+                                    {props.review.summary}
                                 </h3>
                             </div>
                         </div>
                     </div>
-                    <ContentDetails />
+                    <ContentDetails reviewText={props.review.reviewText} />
                 </div>
             </div>
             <div className={`contentActionsContainer2 ${styles.contentActionsContainer2}`}>
