@@ -31,4 +31,14 @@ const dummyReferences = [{ productID: 1, name: "cannon", image: "https://cdn.sho
 { productID: 31, name: "skull eye patch", image: "https://www.partyvalue.com/media/product/082/pirate-eye-patch-1ct-c50.jpg" },
 { productID: 32, name: "hat with feather", image: "https://images-na.ssl-images-amazon.com/images/I/710ecn%2BKlwL._AC_SL1300_.jpg" }]
 
-module.exports.dummyReferences = dummyReferences
+
+function badgify(review) {
+    //charcode reveiwerID[3] + charcode asin[4]
+    console.log(review.reviewerID.charCodeAt(2))
+    return ((review.reviewerID.charCodeAt(3) + review.reviewerName.charCodeAt(4) / 2 >= 50))
+}
+
+
+
+
+module.exports.badgify = badgify

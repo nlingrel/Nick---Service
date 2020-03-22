@@ -3,12 +3,12 @@ const bodyParser = require('body-parser')
 // const cors = require('cors')
 const path = require('path')
 //const db = require('./db')
-//const review = require('./db')
+const dbHelp = require('./dbHelperFunctions')
 const app = express()
 const port = 8084
 const mongoose = require('mongoose')
 const pirateSpeak = require('pirate-speak')
-const piratize = require('./piratize')
+const mongoosePaginate = require('mongoose-paginate')
 
 
 
@@ -23,7 +23,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     // we're connected!
 
-
 });
 const reviewSchema = new mongoose.Schema({
     "image": Array,
@@ -37,7 +36,9 @@ const reviewSchema = new mongoose.Schema({
     "reviewerName": String,
     "reviewText": String,
     "summary": String,
-    "unixReviewTime": Number
+    "unixReviewTime": Number,
+    "sweepstakes": Boolean
+
 });
 
 const productSchema = new mongoose.Schema({
@@ -45,6 +46,9 @@ const productSchema = new mongoose.Schema({
     "name": String,
     "image": String
 })
+
+reviewSchema.plugin(mongoosePaginate);
+
 
 Product = mongoose.model('Product', reviewSchema);
 
@@ -70,9 +74,15 @@ app.get('/reviews', (req, res, next) => {
             docs.map(review => {
                 review.reviewText = pirateSpeak.translate(review.reviewText)
                 review.summary = pirateSpeak.translate(review.summary)
+                review.sweepstakes = dbHelp.badgify(review)
+                if (review.reviewerName === 'Amazon Customer') {
+                    review.reviewerName = 'Arrtozone Customer'
+                }
+
             });
             return docs;
         })
+
         .then(docs => {
             res.status(200).send(docs)
         })

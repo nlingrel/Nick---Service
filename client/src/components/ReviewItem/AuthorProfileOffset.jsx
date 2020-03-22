@@ -13,8 +13,8 @@ function AuthorProfileOffset(props) {
                     <div className={`contentHeader2 ${styles.contentHeader2}`}>
                         <div className={`contentDataSummary2 ${styles.contentDataSummary2}`}>
                             <div className={`contentBadgesContainer2 ${styles.contentBadgesContainer2}`}>
-                                <Badge badges={props.badges.sweepstakes} />
-                                <Badge badges={props.badges.verified} />
+                                {props.review.sweepstakes ? <Badge badges={props.badges.sweepstakes} /> : ''}
+                                {props.review.verified ? <Badge badges={props.badges.verified} /> : ''}
                             </div>
                             <div className={`contentHeaderMeta2 ${styles.contentHeaderMeta2}`}>
                                 <span>
