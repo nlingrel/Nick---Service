@@ -25,7 +25,7 @@ class Reviews extends React.Component {
         true: 'Reviews',
         false: 'Review'
       },
-      product: '0857339583',
+      product: '0209688726',
       reviews: []
     };
   }
@@ -33,7 +33,7 @@ class Reviews extends React.Component {
   componentDidMount() {
     //let id = 0857339583;
     const params = { productID: this.state.product }
-    console.log(params)
+    console.log('request query ', params)
     window.fetch(`http://localhost:8084/reviews?productID=${encodeURIComponent(params.productID)}`)
       .then(res => res.json())
       .then(

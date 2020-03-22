@@ -18,7 +18,8 @@ class ReviewItem extends React.Component {
                 verified: {
                     icon: '*',
                     label: 'Verified Purchaser'
-                }
+                },
+                review: this.props.review
             }
         }
     }
@@ -27,7 +28,7 @@ class ReviewItem extends React.Component {
     render() {
         return (
             <li className={`reviewContentItem2 ${styles.reviewContentItem2}`}>
-                <AuthorProfile />
+                <AuthorProfile review={this.props.review} />
                 <AuthorProfileOffset badges={this.state.badges} ratio={this.props.rating} review={this.props.review} />
             </li>
         );

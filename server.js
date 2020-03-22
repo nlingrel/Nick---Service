@@ -7,6 +7,10 @@ const path = require('path')
 const app = express()
 const port = 8084
 const mongoose = require('mongoose')
+const pirateSpeak = require('pirate-speak')
+const piratize = require('./piratize')
+
+
 
 // app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -36,6 +40,14 @@ const reviewSchema = new mongoose.Schema({
     "unixReviewTime": Number
 });
 
+const productSchema = new mongoose.Schema({
+    "productID": Number,
+    "name": String,
+    "image": String
+})
+
+Product = mongoose.model('Product', reviewSchema);
+
 Review = mongoose.model('Review', reviewSchema);
 
 
@@ -46,9 +58,21 @@ app.get('/', (req, res) => res.send(
 
     'Review service'))
 
+
 app.get('/reviews', (req, res, next) => {
-    console.log(req)
+
     Review.find({ asin: req.query.productID }).exec()
+
+        // const engDocs = docs.slice()
+
+
+        .then(docs => {
+            docs.map(review => {
+                review.reviewText = pirateSpeak.translate(review.reviewText)
+                review.summary = pirateSpeak.translate(review.summary)
+            });
+            return docs;
+        })
         .then(docs => {
             res.status(200).send(docs)
         })

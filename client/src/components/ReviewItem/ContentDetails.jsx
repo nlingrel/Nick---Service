@@ -1,6 +1,7 @@
 import React from "react"
 import styles from "./styles.css"
 import Recommendation from "./Recommendation"
+import ReviewImage from "./ReviewImage"
 
 function ContentDetails(props) {
     return (
@@ -25,6 +26,11 @@ function ContentDetails(props) {
                         </div>
                         <div className={`contentTagDimensions2 ${styles.contentTagDimensions2}`}></div>
                         <Recommendation />
+                        <ul className={`contentMediaContainer2 ${styles.contentMediaContainer2}`}>
+                            {props.images.length > 0 ? props.images.map((item, index) => {
+                                return <ReviewImage key={index} image={item} />
+                            }) : ''}
+                        </ul>
                     </div>
                 </div>
             </div>

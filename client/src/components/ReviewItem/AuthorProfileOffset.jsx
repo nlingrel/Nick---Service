@@ -42,7 +42,7 @@ function AuthorProfileOffset(props) {
                             </div>
                         </div>
                     </div>
-                    <ContentDetails reviewText={props.review.reviewText} />
+                    <ContentDetails reviewText={props.review.reviewText} images={props.review.image} />
                 </div>
             </div>
             <div className={`contentActionsContainer2 ${styles.contentActionsContainer2}`}>

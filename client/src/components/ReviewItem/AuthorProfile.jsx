@@ -9,7 +9,7 @@ function AuthorProfile(props) {
                     <div className={`authorAvatarNickname2 ${styles.authorAvatarNickname2}`}>
                         <div className={`contentAuthorName2 ${styles.contentAuthorName2}`}>
                             <button className={`author2 ${styles.author2}`} type="button">
-                                <h3>Author's Name</h3>
+                                <h3>{props.review.reviewerName ? props.review.reviewerName : 'Anonymous'}</h3>
                             </button>
                         </div>
                     </div>
@@ -43,3 +43,6 @@ function AuthorProfile(props) {
 }
 
 export default AuthorProfile
+
+// props.review.reviewerName
+// 
