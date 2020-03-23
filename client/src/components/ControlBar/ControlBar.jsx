@@ -7,7 +7,7 @@ function ControlBar(props) {
         <div className={`controlBar2 ${styles.controlBar2}`}>
             <div className={`controlBarCount2 ${styles.controlBarCount2}`}>
                 <div className={`contentPaginationPagesCurrent2 ${styles.contentPaginationPagesCurrent2}`}>
-                    {props.page}-{props.pages} of {props.total} Reviews
+                    {10 * (props.page - 1) + 1}-{props.page * 10 <= props.filterCount ? props.page * 10 : props.filterCount} of {props.filterCount} Reviews
                 </div>
             </div>
             <PaginationButtons previousPage={props.previousPage} nextPage={props.nextPage} />

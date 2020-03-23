@@ -75,7 +75,7 @@ app.get('/reviews', (req, res, next) => {
     //     })
     const page = parseInt(req.query.page)
     const overall = parseInt(req.query.overall)
-
+    const queryOptions = { asin: req.query.productID }
     const reviewCountByRating = {
         total: 0,
         5: { star: '5', count: 0 },
@@ -96,7 +96,13 @@ app.get('/reviews', (req, res, next) => {
         .then(result => reviewCountByRating[1].count = result)
     Review.count({ asin: req.query.productID })
         .then(result => reviewCountByRating.total = result)
-    Review.paginate({ asin: req.query.productID, overall: overall }, { page: page })
+
+    if (overall < 6) {
+        queryOptions.overall = overall
+    }
+
+    Review.paginate(queryOptions, { page: page })
+
         .then(results => {
 
             results.docs.map(review => {

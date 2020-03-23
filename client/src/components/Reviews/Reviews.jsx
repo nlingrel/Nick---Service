@@ -13,11 +13,12 @@ class Reviews extends React.Component {
     this.state = {
       ratio: 3.2,
       reviewCountByRating: {
-        "5": { star: 5, count: 12 },
-        "4": { star: 4, count: 34 },
-        "3": { star: 3, count: 5 },
-        "2": { star: 2, count: 1 },
-        "1": { star: 1, count: 7 },
+        total: 0,
+        "5": { star: 5, count: 0 },
+        "4": { star: 4, count: 0 },
+        "3": { star: 3, count: 0 },
+        "2": { star: 2, count: 0 },
+        "1": { star: 1, count: 0 },
       },
 
       plural: {
@@ -28,8 +29,10 @@ class Reviews extends React.Component {
       page: 1,
       pages: 1,
       reviews: [],
-      overall: 5,
-      mounted: false
+      overall: 6,
+      mounted: false,
+      filter: false,
+      filterCount: 0
     };
     this.nextPage = this.nextPage.bind(this)
     this.previousPage = this.previousPage.bind(this)
@@ -38,7 +41,7 @@ class Reviews extends React.Component {
 
   componentDidMount() {
 
-    window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${this.state.page}&overall=${this.state.overall}}`)
+    window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${this.state.page}&overall=${this.state.overall}`)
       .then(res => res.json())
       .then((result) => {
         console.log(result)
@@ -47,6 +50,7 @@ class Reviews extends React.Component {
           page: result.page,
           pages: result.pages,
           total: result.total,
+          filterCount: result.total,
           mounted: true,
           reviewCountByRating: result.reviewCountByRating
 
@@ -68,8 +72,9 @@ class Reviews extends React.Component {
           reviews: result.docs,
           page: result.page,
           pages: result.pages,
-          total: result.total,
+          filterCount: result.total,
           mounted: true
+
         });
       },
         error => {
@@ -93,7 +98,8 @@ class Reviews extends React.Component {
     if (star !== this.state.overall) {
       this.getPage(1, star)
       this.setState({
-        overall: star
+        overall: star,
+        filter: true,
       })
 
     }
@@ -123,11 +129,11 @@ class Reviews extends React.Component {
             <Masthead ratio={this.state.ratio} total={this.state.total} plural={this.state.plural} />
           </div>
           <div className={`$ contentListContainer2 ${styles.contentListContainer2}`}>
-            <Header histogramClick={this.histogramClick} previousPage={this.previousPage} nextPage={this.nextPage} ratio={this.state.ratio} page={this.state.page} pages={this.state.pages} total={this.state.reviewCountByRating.total} reviewCounts={this.state.reviewCountByRating} />
+            <Header histogramClick={this.histogramClick} previousPage={this.previousPage} nextPage={this.nextPage} ratio={this.state.ratio} page={this.state.page} pages={this.state.pages} total={this.state.total} reviewCounts={this.state.reviewCountByRating} filterCount={this.state.filterCount} />
           </div>
           <ReviewList reviews={this.state.reviews} />
           <div className={`contentPagination2 ${styles.contentPagination2}`}>
-            <ControlBar previousPage={this.previousPage} nextPage={this.nextPage} page={this.state.page} pages={this.state.pages} total={this.state.total} />
+            <ControlBar previousPage={this.previousPage} nextPage={this.nextPage} page={this.state.page} pages={this.state.pages} filterCount={this.state.filterCount} />
           </div>
         </div>
       )

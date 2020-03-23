@@ -8,7 +8,7 @@ function Summary(props) {
     <div className={`sectionSummary2 ${styles.sectionSummary2}`}>
       <div className={`sectionSummaryTable2 ${styles.sectionSummaryTable2}`}>
         <div className={`sectionSummaryInline2 ${styles.sectionSummaryInline2}`}>
-          <Histogram histogramClick={props.histogramClick} total={props.total} reviewCounts={props.reviewCounts} />
+          <Histogram histogramClick={props.histogramClick} total={props.total} reviewCounts={props.reviewCounts} filterCount={props.filterCount} />
           <div className={`secondaryRatingSummaryBlock2 ${styles.secondaryRatingSummaryBlock2}`}>
             <div className={`secondaryRatingSummaryHeader2 ${styles.secondaryRatingSummaryHeader2}`}>
               <h3 className={`contentTitle2 ${styles.contentTitle2}`}>
