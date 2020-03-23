@@ -7,6 +7,7 @@ function PaginationButtons(props) {
             <li className={`contentPaginationButtonsItemPrevious2 ${styles.contentPaginationButtonsItemPrevious2}`}>
                 <button className={`contentButtonPagesFirst2 ${styles.contentButtonPagesFirst2}`}
                     type="button"
+                    onClick={props.previousPage}
                 >
                     <span className={`contentButtonPagesPrev2 ${styles.contentButtonPagesPrev2}`}>
                         ◄
@@ -16,6 +17,7 @@ function PaginationButtons(props) {
             <li className={`contentPaginationButtonsItemNext2 ${styles.contentPaginationButtonsItemNext2}`}>
                 <button className={`contentButtonPagesLast2 ${styles.contentButtonPagesLast2}`}
                     type="button"
+                    onClick={props.nextPage}
                 >
                     <span className={`contentButtonPagesNext2 ${styles.contentButtonPagesNext2}`}>
                         ►
@@ -27,3 +29,4 @@ function PaginationButtons(props) {
 }
 
 export default PaginationButtons
+

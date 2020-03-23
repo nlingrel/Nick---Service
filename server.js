@@ -64,14 +64,19 @@ app.get('/', (req, res) => res.send(
 
 
 app.get('/reviews', (req, res, next) => {
+    // Review.paginate({ asin: req.query.productID }).then(results => {
+    //     console.log(results.docs)
+    //     res.send(results.docs)
+    // })
+    //     .catch(err => {
+    //         console.log(err)
+    //         res.status(500).json({ error: err })
+    //     })
+    const page = parseInt(req.query.page)
+    Review.paginate({ asin: req.query.productID }, { page: page })
+        .then(results => {
 
-    Review.find({ asin: req.query.productID }).exec()
-
-        // const engDocs = docs.slice()
-
-
-        .then(docs => {
-            docs.map(review => {
+            results.docs.map(review => {
                 review.reviewText = pirateSpeak.translate(review.reviewText)
                 review.summary = pirateSpeak.translate(review.summary)
                 review.sweepstakes = dbHelp.badgify(review)
@@ -80,11 +85,11 @@ app.get('/reviews', (req, res, next) => {
                 }
 
             });
-            return docs;
+            return results;
         })
+        .then(results => {
 
-        .then(docs => {
-            res.status(200).send(docs)
+            res.status(200).send(results)
         })
         .catch(err => {
             console.error(err)

@@ -26,23 +26,29 @@ class Reviews extends React.Component {
         false: 'Review'
       },
       product: '0209688726',
-      reviews: []
+      page: 1,
+      pages: 1,
+      reviews: [],
+      mounted: false
     };
+    this.nextPage = this.nextPage.bind(this)
+    this.previousPage = this.previousPage.bind(this)
   }
 
   componentDidMount() {
-    //let id = 0857339583;
-    const params = { productID: this.state.product }
-    console.log('request query ', params)
-    window.fetch(`http://localhost:8084/reviews?productID=${encodeURIComponent(params.productID)}`)
+
+    window.fetch(`http://localhost:8084/reviews?productID=${encodeURIComponent(this.state.product)}&page=1}`)
       .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result)
-          this.setState({
-            reviews: result
-          });
-        },
+      .then((result) => {
+        console.log(result)
+        this.setState({
+          reviews: result.docs,
+          page: result.page,
+          pages: result.pages,
+          total: result.total,
+          mounted: true
+        });
+      },
         error => {
           this.setState({
             error
@@ -50,23 +56,71 @@ class Reviews extends React.Component {
         }
       )
   }
+  getPage(page) {
+    window.fetch(`http://localhost:8084/reviews?productID=${encodeURIComponent(this.state.product)}&page=${encodeURIComponent(page)}`)
+      .then(res => res.json())
+      .then((result) => {
+        console.log(result)
+        this.setState({
+          reviews: result.docs,
+          page: result.page,
+          pages: result.pages,
+          total: result.total,
+          mounted: true
+        });
+      },
+        error => {
+          this.setState({
+            error
+          });
+        }
+      )
+  }
+  nextPage(event) {
+    event.preventDefault()
+    console.log('Should go to next page')
+    if (this.state.page < this.state.pages) {
+      this.getPage(this.state.page + 1)
+
+    }
+  }
+
+  previousPage(event) {
+    event.preventDefault()
+    console.log('Should go to previous page')
+    if (this.state.page > 1) {
+      this.getPage(this.state.page - 1)
+    }
+  }
 
   render() {
-    return (
-      <div id="tabReviews">
-        <div className={`contentSearch2 ${styles.contentSearch2}`}>
-          <Masthead ratio={this.state.ratio} ratioCount={this.state.ratioCount} plural={this.state.plural} />
+
+    const { error, mounted } = this.state;
+
+    if (error) {
+      return <div>Error</div>;
+    } else if (!mounted) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <div id="tabReviews">
+          <div className={`contentSearch2 ${styles.contentSearch2}`}>
+            <Masthead ratio={this.state.ratio} ratioCount={this.state.ratioCount} plural={this.state.plural} />
+          </div>
+          <div className={`$ contentListContainer2 ${styles.contentListContainer2}`}>
+            <Header previousPage={this.previousPage} nextPage={this.nextPage} ratio={this.state.ratio} page={this.state.page} pages={this.state.pages} total={this.state.total} reviewCounts={this.state.reviewCountByRating} />
+          </div>
+          <ReviewList reviews={this.state.reviews} />
+          <div className={`contentPagination2 ${styles.contentPagination2}`}>
+            <ControlBar previousPage={this.previousPage} nextPage={this.nextPage} page={this.state.page} pages={this.state.pages} total={this.state.total} />
+          </div>
         </div>
-        <div className={`$ contentListContainer2 ${styles.contentListContainer2}`}>
-          <Header ratio={this.state.ratio} ratioCount={this.state.ratioCount} reviewCounts={this.state.reviewCountByRating} />
-        </div>
-        <ReviewList reviews={this.state.reviews} />
-        <div className={`contentPagination2 ${styles.contentPagination2}`}>
-          <ControlBar ratioCount={this.state.ratioCount} />
-        </div>
-      </div>
-    )
+      )
+
+    }
+
   }
+
 }
 
 export default Reviews

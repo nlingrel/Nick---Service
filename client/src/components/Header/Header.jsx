@@ -9,7 +9,7 @@ function Header(props) {
     <div className={`header2 ${styles.header2}`}>
       <ActionBar />
       <Summary ratio={props.ratio} ratioCount={props.ratioCount} reviewCounts={props.reviewCounts} />
-      <ControlBar ratioCount={props.ratioCount} />
+      <ControlBar previousPage={props.previousPage} nextPage={props.nextPage} page={props.page} pages={props.pages} total={props.total} />
     </div>
   )
 }

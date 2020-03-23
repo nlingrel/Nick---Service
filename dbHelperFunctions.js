@@ -34,7 +34,6 @@ const dummyReferences = [{ productID: 1, name: "cannon", image: "https://cdn.sho
 
 function badgify(review) {
     //charcode reveiwerID[3] + charcode asin[4]
-    console.log(review.reviewerID.charCodeAt(2))
     return ((review.reviewerID.charCodeAt(3) + review.reviewerName.charCodeAt(4) / 2 >= 50))
 }
 
