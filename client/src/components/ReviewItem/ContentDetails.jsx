@@ -16,7 +16,7 @@ function ContentDetails(props) {
                             <dl className={`contentDataProductQuestions2 ${styles.contentDataProductQuestions2}`}>
                                 <dt className={`contentDataLabelContainer2 ${styles.contentDataLabelContainer2}`}>
                                     <span className={`contentDataLabel2 ${styles.contentDataLabel2}`}>
-                                        Which ship be ye cap'n of?
+                                        What ship do ye cap'n?
                                   </span>
                                 </dt>
                                 <dd className={`contentDataValue2 ${styles.contentDataValue2}`}>
@@ -25,7 +25,7 @@ function ContentDetails(props) {
                             </dl>
                         </div>
                         <div className={`contentTagDimensions2 ${styles.contentTagDimensions2}`}></div>
-                        <Recommendation />
+                        <Recommendation overall={props.overall} />
                         <ul className={`contentMediaContainer2 ${styles.contentMediaContainer2}`}>
                             {props.images.length > 0 ? props.images.map((item, index) => {
                                 return <ReviewImage key={index} image={item} />

@@ -16,7 +16,7 @@ function Stars(props) {
       <div className={`ratingRatioCount ${styles.ratingRatioCount}`}>
         <span className={`ratingCountLabel ${styles.ratingCountLabel}`}>
           <span>
-            {`${props.ratioCount} `}{props.ratioCount !== 1 ? `${props.plural.true}` : `${props.plural.false}`}
+            {`${props.total} `}{props.total !== 1 ? `${props.plural.true}` : `${props.plural.false}`}
           </span>
         </span>
       </div>

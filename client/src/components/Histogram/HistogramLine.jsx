@@ -3,7 +3,7 @@ import styles from "./styles.css"
 
 function HistogramLine(props) {
     return (
-        <div className={`inlineHistogramRatingsStarContainer ${styles.inlineHistogramRatingsStarContainer2}`} role="button">
+        <div className={`inlineHistogramRatingsStarContainer ${styles.inlineHistogramRatingsStarContainer2}`} role="button" onClick={() => props.histogramClick(props.star)} >
             <div className={`inlineHistogramRatingsStar2 ${styles.inlineHistogramRatingsStar2}`}>
                 {props.reviewCounts.star}
                 <span className={`glyph2 ${styles.glyph2}`}>
@@ -13,7 +13,7 @@ function HistogramLine(props) {
             <div className={` inlineHistogramRatingsBar2 ${styles.inlineHistogramRatingsBar2}`}>
                 <span className={`contentSecondaryRatingsContainer2 ${styles.contentSecondaryRatingsContainer2}`}>
                     <span className={`contentSecondaryRatingsValueWidthFromRating2 ${styles.contentSecondaryRatingsValueWidthFromRating2}`}
-                        style={{ width: `${(props.reviewCounts.count) / props.ratioCount * 100}% ` }}>
+                        style={{ width: `${(props.reviewCounts.count) / props.total * 100}% ` }}>
                     </span>
                 </span>
             </div>

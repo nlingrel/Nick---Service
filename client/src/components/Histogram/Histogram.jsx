@@ -11,11 +11,11 @@ function Histogram(props) {
         </div>
         <p className={`histogramFilterHelper2 ${styles.histogramFilterHelper2}`}>Select a row below to filter reviews.</p>
         <div className={`flexContainerColumn2 ${styles.flexContainerColumn2}`}>
-          <HistogramLine reviewCounts={props.reviewCounts[5]} ratioCount={props.ratioCount} />
-          <HistogramLine reviewCounts={props.reviewCounts[4]} ratioCount={props.ratioCount} />
-          <HistogramLine reviewCounts={props.reviewCounts[3]} ratioCount={props.ratioCount} />
-          <HistogramLine reviewCounts={props.reviewCounts[2]} ratioCount={props.ratioCount} />
-          <HistogramLine reviewCounts={props.reviewCounts[1]} ratioCount={props.ratioCount} />
+          <HistogramLine reviewCounts={props.reviewCounts[5]} total={props.total} histogramClick={props.histogramClick} star={5} />
+          <HistogramLine reviewCounts={props.reviewCounts[4]} total={props.total} histogramClick={props.histogramClick} star={4} />
+          <HistogramLine reviewCounts={props.reviewCounts[3]} total={props.total} histogramClick={props.histogramClick} star={3} />
+          <HistogramLine reviewCounts={props.reviewCounts[2]} total={props.total} histogramClick={props.histogramClick} star={2} />
+          <HistogramLine reviewCounts={props.reviewCounts[1]} total={props.total} histogramClick={props.histogramClick} star={1} />
         </div>
       </div>
     </div>

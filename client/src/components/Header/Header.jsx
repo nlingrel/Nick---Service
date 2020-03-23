@@ -8,7 +8,7 @@ function Header(props) {
   return (
     <div className={`header2 ${styles.header2}`}>
       <ActionBar />
-      <Summary ratio={props.ratio} ratioCount={props.ratioCount} reviewCounts={props.reviewCounts} />
+      <Summary histogramClick={props.histogramClick} ratio={props.ratio} total={props.total} reviewCounts={props.reviewCounts} />
       <ControlBar previousPage={props.previousPage} nextPage={props.nextPage} page={props.page} pages={props.pages} total={props.total} />
     </div>
   )

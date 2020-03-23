@@ -18,7 +18,7 @@ function AuthorProfileOffset(props) {
                             </div>
                             <div className={`contentHeaderMeta2 ${styles.contentHeaderMeta2}`}>
                                 <span>
-                                    <StarRating ratio={props.rating} />
+                                    <StarRating ratio={props.ratio} />
                                 </span>
                                 <div className={`contentMetaWrapper2 ${styles.contentMetaWrapper2}`}>
                                     <div className={`contentMeta2 ${styles.contentMeta2}`}>
@@ -42,7 +42,7 @@ function AuthorProfileOffset(props) {
                             </div>
                         </div>
                     </div>
-                    <ContentDetails reviewText={props.review.reviewText} images={props.review.image} />
+                    <ContentDetails reviewText={props.review.reviewText} images={props.review.image} overall={props.review.overall} />
                 </div>
             </div>
             <div className={`contentActionsContainer2 ${styles.contentActionsContainer2}`}>

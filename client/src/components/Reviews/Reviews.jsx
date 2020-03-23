@@ -12,7 +12,6 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       ratio: 3.2,
-      ratioCount: 55,
       reviewCountByRating: {
         "5": { star: 5, count: 12 },
         "4": { star: 4, count: 34 },
@@ -29,15 +28,17 @@ class Reviews extends React.Component {
       page: 1,
       pages: 1,
       reviews: [],
+      overall: 5,
       mounted: false
     };
     this.nextPage = this.nextPage.bind(this)
     this.previousPage = this.previousPage.bind(this)
+    this.histogramClick = this.histogramClick.bind(this)
   }
 
   componentDidMount() {
 
-    window.fetch(`http://localhost:8084/reviews?productID=${encodeURIComponent(this.state.product)}&page=1}`)
+    window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${this.state.page}&overall=${this.state.overall}}`)
       .then(res => res.json())
       .then((result) => {
         console.log(result)
@@ -46,7 +47,9 @@ class Reviews extends React.Component {
           page: result.page,
           pages: result.pages,
           total: result.total,
-          mounted: true
+          mounted: true,
+          reviewCountByRating: result.reviewCountByRating
+
         });
       },
         error => {
@@ -56,8 +59,8 @@ class Reviews extends React.Component {
         }
       )
   }
-  getPage(page) {
-    window.fetch(`http://localhost:8084/reviews?productID=${encodeURIComponent(this.state.product)}&page=${encodeURIComponent(page)}`)
+  getPage(page, overall = this.state.overall) {
+    window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${page}&overall=${overall}`)
       .then(res => res.json())
       .then((result) => {
         console.log(result)
@@ -85,6 +88,18 @@ class Reviews extends React.Component {
     }
   }
 
+  histogramClick(star) {
+    event.preventDefault()
+    if (star !== this.state.overall) {
+      this.getPage(1, star)
+      this.setState({
+        overall: star
+      })
+
+    }
+
+  }
+
   previousPage(event) {
     event.preventDefault()
     console.log('Should go to previous page')
@@ -105,10 +120,10 @@ class Reviews extends React.Component {
       return (
         <div id="tabReviews">
           <div className={`contentSearch2 ${styles.contentSearch2}`}>
-            <Masthead ratio={this.state.ratio} ratioCount={this.state.ratioCount} plural={this.state.plural} />
+            <Masthead ratio={this.state.ratio} total={this.state.total} plural={this.state.plural} />
           </div>
           <div className={`$ contentListContainer2 ${styles.contentListContainer2}`}>
-            <Header previousPage={this.previousPage} nextPage={this.nextPage} ratio={this.state.ratio} page={this.state.page} pages={this.state.pages} total={this.state.total} reviewCounts={this.state.reviewCountByRating} />
+            <Header histogramClick={this.histogramClick} previousPage={this.previousPage} nextPage={this.nextPage} ratio={this.state.ratio} page={this.state.page} pages={this.state.pages} total={this.state.reviewCountByRating.total} reviewCounts={this.state.reviewCountByRating} />
           </div>
           <ReviewList reviews={this.state.reviews} />
           <div className={`contentPagination2 ${styles.contentPagination2}`}>

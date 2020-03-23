@@ -8,10 +8,12 @@ const app = express()
 const port = 8084
 const mongoose = require('mongoose')
 const pirateSpeak = require('pirate-speak')
+const piratize = require('./piratize')
 const mongoosePaginate = require('mongoose-paginate')
 
 
 
+piratize.addToDictionary()
 // app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -58,9 +60,8 @@ Review = mongoose.model('Review', reviewSchema);
 
 app.use(express.static(path.join(__dirname, "client/dist")));
 
-app.get('/', (req, res) => res.send(
+app.get('/', (req, res) => res.send('Review service'))
 
-    'Review service'))
 
 
 app.get('/reviews', (req, res, next) => {
@@ -73,7 +74,29 @@ app.get('/reviews', (req, res, next) => {
     //         res.status(500).json({ error: err })
     //     })
     const page = parseInt(req.query.page)
-    Review.paginate({ asin: req.query.productID }, { page: page })
+    const overall = parseInt(req.query.overall)
+
+    const reviewCountByRating = {
+        total: 0,
+        5: { star: '5', count: 0 },
+        4: { star: '4', count: 0 },
+        3: { star: '3', count: 0 },
+        2: { star: '2', count: 0 },
+        1: { star: '1', count: 0 }
+    }
+    Review.count({ asin: req.query.productID, overall: 5 })
+        .then(result => reviewCountByRating[5].count = result)
+    Review.count({ asin: req.query.productID, overall: 4 })
+        .then(result => reviewCountByRating[4].count = result)
+    Review.count({ asin: req.query.productID, overall: 3 })
+        .then(result => reviewCountByRating[3].count = result)
+    Review.count({ asin: req.query.productID, overall: 2 })
+        .then(result => reviewCountByRating[2].count = result)
+    Review.count({ asin: req.query.productID, overall: 1 })
+        .then(result => reviewCountByRating[1].count = result)
+    Review.count({ asin: req.query.productID })
+        .then(result => reviewCountByRating.total = result)
+    Review.paginate({ asin: req.query.productID, overall: overall }, { page: page })
         .then(results => {
 
             results.docs.map(review => {
@@ -85,16 +108,18 @@ app.get('/reviews', (req, res, next) => {
                 }
 
             });
+
             return results;
         })
         .then(results => {
-
+            results.reviewCountByRating = reviewCountByRating
             res.status(200).send(results)
         })
         .catch(err => {
             console.error(err)
             res.status(500).json({ error: err })
         })
+
 
 });
 
