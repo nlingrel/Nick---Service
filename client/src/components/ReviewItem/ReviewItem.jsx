@@ -10,6 +10,7 @@ class ReviewItem extends React.Component {
         this.state = {
             yes: 0,
             no: 0,
+            author: this.props.author,
             badges: {
                 sweepstakes: {
                     icon: '⊞',

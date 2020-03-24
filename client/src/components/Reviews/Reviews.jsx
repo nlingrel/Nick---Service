@@ -11,8 +11,9 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ratio: 3.2,
+      ratio: 5.0,
       reviewCountByRating: {
+        ratio: 0,
         total: 0,
         "5": { star: 5, count: 0 },
         "4": { star: 4, count: 0 },
@@ -25,7 +26,7 @@ class Reviews extends React.Component {
         true: 'Reviews',
         false: 'Review'
       },
-      product: '0209688726',
+      product: 'B00004RB1U',
       page: 1,
       pages: 1,
       reviews: [],
@@ -52,8 +53,8 @@ class Reviews extends React.Component {
           total: result.total,
           filterCount: result.total,
           mounted: true,
+          ratio: result.reviewCountByRating.ratio,
           reviewCountByRating: result.reviewCountByRating
-
         });
       },
         error => {
@@ -131,7 +132,7 @@ class Reviews extends React.Component {
           <div className={`$ contentListContainer2 ${styles.contentListContainer2}`}>
             <Header histogramClick={this.histogramClick} previousPage={this.previousPage} nextPage={this.nextPage} ratio={this.state.ratio} page={this.state.page} pages={this.state.pages} total={this.state.total} reviewCounts={this.state.reviewCountByRating} filterCount={this.state.filterCount} />
           </div>
-          <ReviewList reviews={this.state.reviews} />
+            <ReviewList reviews={this.state.reviews} />
           <div className={`contentPagination2 ${styles.contentPagination2}`}>
             <ControlBar previousPage={this.previousPage} nextPage={this.nextPage} page={this.state.page} pages={this.state.pages} filterCount={this.state.filterCount} />
           </div>

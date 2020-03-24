@@ -37,7 +37,23 @@ function badgify(review) {
     return ((review.reviewerID.charCodeAt(3) + review.reviewerName.charCodeAt(4) / 2 >= 50))
 }
 
+function findRatio(ratingObj){
+    var ratioNum = 0
+    var ratioDen = ratingObj.total;
+    var ratio = 0;
+  for(var i = 5; i > 1; i--){
+    var perStarRatio = (ratingObj[i].star / 5 * ratingObj[i].count)
+    // console.log(`perStarRaito for ${i}`, perStarRatio)
+    ratioNum += perStarRatio
+    
+  }
+  if(ratioDen > 0) ratio = ratioNum/ratioDen * 5
+   
+   console.log('ratio in helper:' ,ratio)
+  return ratio.toFixed(1);
+}
 
 
 
 module.exports.badgify = badgify
+module.exports.findRatio = findRatio
