@@ -19,7 +19,7 @@ function AuthorProfile(props) {
                         <ul className={`authorUserStatsList2 ${styles.authorUserStatsList2}`}>
                             <li className={`authorUserStatsReviews2 ${styles.authorUserStatsReviews2}`}>
                                 <span className={`authorUserStatsData2 ${styles.authorUserStatsData2}`}>
-                                    Review
+                                    Reviews 
                                         </span>
                                 <span className={`${styles.authorUserStatsValue2}`}>
                                     1

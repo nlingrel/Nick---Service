@@ -28,7 +28,7 @@ function AuthorProfileOffset(props) {
                                                     ·
                                             </span>
                                                 <span className={`contentDateTimeStamp2 ${styles.contentDateTimeStamp2}`}>
-                                                    2 hours ago &nbsp;
+                                                    {props.review.reviewTime} &nbsp;
                                             </span>
                                             </div>
                                         </div>

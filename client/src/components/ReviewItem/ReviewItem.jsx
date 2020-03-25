@@ -10,7 +10,8 @@ class ReviewItem extends React.Component {
         this.state = {
             yes: 0,
             no: 0,
-            author: this.props.author,
+            author: this.props.review.reviewerID,
+            authorCount: 0,
             badges: {
                 sweepstakes: {
                     icon: '⊞',
@@ -23,6 +24,24 @@ class ReviewItem extends React.Component {
                 review: this.props.review
             }
         }
+    }
+    componentDidMount(){
+        window.fetch(`http://localhost:8084/reviewer?reviewer=${this.state.author}`)
+      .then(res => {
+        res.json()
+        })
+      .then((result) => {
+        console.log('result', result)
+        this.setState({
+          authorCount : result
+        });
+      },
+        error => {
+          this.setState({
+            error
+          });
+        }
+      )
     }
 
 

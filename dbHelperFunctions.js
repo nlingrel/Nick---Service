@@ -53,6 +53,10 @@ function findRatio(ratingObj){
   return ratio.toFixed(1);
 }
 
+// async function getCounts(id){
+  
+// }
+
 
 
 module.exports.badgify = badgify

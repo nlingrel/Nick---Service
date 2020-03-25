@@ -39,7 +39,8 @@ const reviewSchema = new mongoose.Schema({
     "reviewText": String,
     "summary": String,
     "unixReviewTime": Number,
-    "sweepstakes": Boolean
+    "sweepstakes": Boolean,
+    "authorCount": Number
 
 });
 
@@ -99,9 +100,17 @@ app.get('/reviews', (req, res, next) => {
         }
         reviewCountByRating.ratio = dbHelp.findRatio(reviewCountByRating);
         results[0].reviewCountByRating = reviewCountByRating;
-        
-        return results[0];
+        return results[0] 
     })
+    // .then(results => {
+        
+        
+        
+    //     return results.docs.map( review => {
+    //         review.authorCount = Review.count({ reviewerID: review.reviewerID})
+    //     })
+        
+    // })
     .then(results => {
             results.docs.map(review => {
                 review.reviewText = pirateSpeak.translate(review.reviewText)
@@ -113,6 +122,12 @@ app.get('/reviews', (req, res, next) => {
             });  
         return results;
     }) 
+    .then(results => {
+        results.docs.map(review => {
+            review.authorCount = Review.count({reviewerID: review.reviewerID})
+        })
+        return results;
+    })
     .then(results => {
             res.status(200).send(results)
     })    
@@ -127,7 +142,7 @@ app.get('/reviewer', (req, res, next) => {
     console.log(typeof req.query.reviewerID)
     Review.count({ reviewerID: req.query.reviewerID})
     .then( result => {
-        res.status(200).json(result)
+        res.status(200).json({data: result})
     })
     .catch(err => {
         console.error(err)

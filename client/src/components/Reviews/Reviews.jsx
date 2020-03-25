@@ -55,7 +55,7 @@ class Reviews extends React.Component {
           mounted: true,
           ratio: result.reviewCountByRating.ratio,
           reviewCountByRating: result.reviewCountByRating
-        });
+        })
       },
         error => {
           this.setState({
