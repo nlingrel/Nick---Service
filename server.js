@@ -1,15 +1,15 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-// const cors = require('cors')
 const path = require('path')
-//const db = require('./db')
+const db = require('./db')
 const dbHelp = require('./dbHelperFunctions')
 const app = express()
 const port = 8084
-const mongoose = require('mongoose')
+const Review = require('./ReviewModel')
+
 const pirateSpeak = require('pirate-speak')
 const piratize = require('./piratize')
-const mongoosePaginate = require('mongoose-paginate')
+
 
 
 
@@ -18,40 +18,40 @@ piratize.addToDictionary()
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-mongoose.connect('mongodb://localhost/test1', { useNewUrlParser: true });
+// mongoose.connect('mongodb://localhost/test1', { useNewUrlParser: true });
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    // we're connected!
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function () {
+//     // we're connected!
 
-});
-const reviewSchema = new mongoose.Schema({
-    "image": Array,
-    "overall": Number,
-    "vote": String,
-    "verified": Boolean,
-    "reviewTime": String,
-    "reviewerID": String,
-    "asin": String,
-    "style": Object,
-    "reviewerName": String,
-    "reviewText": String,
-    "summary": String,
-    "unixReviewTime": Number,
-    "sweepstakes": Boolean,
-    "authorCount": Number
+// });
+// const reviewSchema = new mongoose.Schema({
+//     "image": Array,
+//     "overall": Number,
+//     "vote": String,
+//     "verified": Boolean,
+//     "reviewTime": String,
+//     "reviewerID": String,
+//     "asin": String,
+//     "style": Object,
+//     "reviewerName": String,
+//     "reviewText": String,
+//     "summary": String,
+//     "unixReviewTime": Number,
+//     "sweepstakes": Boolean,
+//     "authorCount": Number
 
-});
-
-
-
-reviewSchema.plugin(mongoosePaginate);
+// });
 
 
-Product = mongoose.model('Product', reviewSchema);
 
-Review = mongoose.model('Review', reviewSchema);
+// reviewSchema.plugin(mongoosePaginate);
+
+
+// Product = mongoose.model('Product', reviewSchema);
+
+// Review = mongoose.model('Review', reviewSchema);
 
 
 
@@ -80,17 +80,17 @@ app.get('/reviews', (req, res, next) => {
     }
 
     Promise.all([
-        Review.paginate(queryOptions, { page: page }),
+        db.Review.paginate(queryOptions, { page: page }),
 
-        Review.count({ asin: req.query.productID, overall: 1 }),
+        db.Review.count({ asin: req.query.productID, overall: 1 }),
         
-        Review.count({ asin: req.query.productID, overall: 2 }),
+        db.Review.count({ asin: req.query.productID, overall: 2 }),
         
-        Review.count({ asin: req.query.productID, overall: 3 }),
+        db.Review.count({ asin: req.query.productID, overall: 3 }),
         
-        Review.count({ asin: req.query.productID, overall: 4 }),
+        db.Review.count({ asin: req.query.productID, overall: 4 }),
         
-        Review.count({ asin: req.query.productID, overall: 5 }),
+        db.Review.count({ asin: req.query.productID, overall: 5 }),
         
     ])
     .then(results =>{
@@ -124,7 +124,7 @@ app.get('/reviews', (req, res, next) => {
     }) 
     .then(results => {
         results.docs.map(review => {
-            review.authorCount = Review.count({reviewerID: review.reviewerID})
+            review.authorCount = db.Review.count({reviewerID: review.reviewerID})
         })
         return results;
     })
