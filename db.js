@@ -30,7 +30,7 @@ Review = mongoose.model('Review', reviewSchema);
 
 Product = mongoose.model('Product', reviewSchema);
 
-seeder.connect('mongodb://localhost/test2', function(){
+seeder.connect('mongodb://mongo:27017/newdock', function(){
     seeder.loadModels(['./ReviewModel.js']);
 });
 
@@ -41,7 +41,7 @@ seeder.clearModels(['Review'], function (){
 });
 
 
-mongoose.connect('mongodb://localhost/test2', { useNewUrlParser: true });
+mongoose.connect('mongodb://mongo:27017/newdock/data', { useNewUrlParser: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
