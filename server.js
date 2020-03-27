@@ -5,7 +5,7 @@ const db = require('./db')
 const dbHelp = require('./dbHelperFunctions')
 const app = express()
 const port = 8084
-const Review = require('./ReviewModel')
+const Review = require('./db')
 
 const pirateSpeak = require('pirate-speak')
 const piratize = require('./piratize')

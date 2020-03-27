@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate')
-const seedData = require('./dbseed')
-const seeder = require('mongoose-seed') 
-var Review = require('./ReviewModel')
+const { seedData } = require('./dbseed')
+
+
 
 const reviewSchema = new mongoose.Schema({
     "image": Array,
@@ -23,35 +23,42 @@ const reviewSchema = new mongoose.Schema({
 });
 
 
-
 reviewSchema.plugin(mongoosePaginate);
 Review = mongoose.model('Review', reviewSchema);
 
 
 Product = mongoose.model('Product', reviewSchema);
 
-seeder.connect('mongodb://mongo:27017/newdock', function(){
-    seeder.loadModels(['./ReviewModel.js']);
-});
-
-seeder.clearModels(['Review'], function (){
-    seeder.populateModels(seedData, function (){
-        seeder.disconnect();
-    })
-});
-
-
-mongoose.connect('mongodb://mongo:27017/newdock/data', { useNewUrlParser: true });
-
+mongoose.connect('mongodb://localhost/review_data', { useNewUrlParser: true });
 const db = mongoose.connection;
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     // we're connected!
+  console.log('db connection open')
+  db.dropCollection("reviews", function (err, result) {
+
+    if (err) {
+
+        console.log("error delete collection");
+
+    } else {
+
+        Review.insertMany(seedData)
+    .then(function(mongooseDocuments) {
+         //
+    })
+    .catch(function(err) {
+        console.log(err)
+    });
+
+    }
 
 });
+  
+})
 
 
-// Review = mongoose.model('Review', reviewSchema);
 
 
 

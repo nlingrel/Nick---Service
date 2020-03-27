@@ -26,22 +26,22 @@ class ReviewItem extends React.Component {
         }
     }
     componentDidMount(){
-        window.fetch(`http://localhost:8084/reviewer?reviewer=${this.state.author}`)
-      .then(res => {
-        res.json()
-        })
-      .then((result) => {
-        console.log('result', result)
-        this.setState({
-          authorCount : result
-        });
-      },
-        error => {
-          this.setState({
-            error
-          });
-        }
-      )
+      //   window.fetch(`http://localhost:8084/reviewer?reviewer=${this.state.author}`)
+      // .then(res => {
+      //   res.json()
+      //   })
+      // .then((result) => {
+      //   console.log('result', result)
+      //   this.setState({
+      //     authorCount : result
+      //   });
+      // },
+      //   error => {
+      //     this.setState({
+      //       error
+      //     });
+      //   }
+      // )
     }
 
 
