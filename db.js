@@ -29,38 +29,39 @@ Review = mongoose.model('Review', reviewSchema);
 
 Product = mongoose.model('Product', reviewSchema);
 
-mongoose.connect('mongodb://localhost/review_data', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/app', { useNewUrlParser: true });
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
+
 db.once('open', function () {
-    // we're connected!
+
   console.log('db connection open')
-  db.dropCollection("reviews", function (err, result) {
 
-    if (err) {
+  mongoose.connection.db.listCollections({name: 'reviews'}).toArray(function(err, items){
+    let exist = items.length > 0;  
+    console.log('Does it exist?', exist)
+      if(exist){
+        db.dropCollection("reviews", function (err, result) {
+          if (err) {
+                console.log("error delete collection");
+          }
+        })
+      }
+    
+      Review.insertMany(seedData)
+      .then(function(mongooseDocuments) {
+           console.log('inserting documents')
+      })
+      .catch(function(err) {
+          console.log(err)
+      });
 
-        console.log("error delete collection");
-
-    } else {
-
-        Review.insertMany(seedData)
-    .then(function(mongooseDocuments) {
-         //
-    })
-    .catch(function(err) {
-        console.log(err)
-    });
-
-    }
+  })
 
 });
   
-})
-
-
-
-
+      
 
 module.exports.Review = Review;
 module.exports.db = db;
