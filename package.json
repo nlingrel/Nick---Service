@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "react-dev": "webpack -d --watch"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "mongoose-paginate": "^5.0.3",
     "mongoose-seed": "^0.6.0",
     "mongoose-seeder": "^1.2.1",
+    "nodemon": "^2.0.2",
     "pirate-speak": "^1.0.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
