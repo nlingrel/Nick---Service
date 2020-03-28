@@ -10,7 +10,8 @@ const additions = {
     steering: 'helm',
     interior: 'belowdecks',
     exterior: 'hull',
-    amazon: 'arrtozone'
+    amazon: 'arrtozone',
+    stars: 'arrs'
 }
 
 pirateSpeak.dictionary.this = 'this'

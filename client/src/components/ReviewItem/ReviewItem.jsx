@@ -14,11 +14,11 @@ class ReviewItem extends React.Component {
             authorCount: 0,
             badges: {
                 sweepstakes: {
-                    icon: '⊞',
+                    icon: '†',
                     label: 'Sweepstakes Entry'
                 },
                 verified: {
-                    icon: '*',
+                    icon: '☠',
                     label: 'Verified Purchaser'
                 },
                 review: this.props.review

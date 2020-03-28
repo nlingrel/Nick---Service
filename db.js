@@ -29,8 +29,8 @@ Review = mongoose.model('Review', reviewSchema);
 
 
 Product = mongoose.model('Product', reviewSchema);
-// mongoose.connect('mongodb://localhost/app', { useNewUrlParser: true });
-mongoose.connect('mongodb://mongo:27017/app', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/app', { useNewUrlParser: true });
+// mongoose.connect('mongodb://mongo:27017/app', { useNewUrlParser: true });
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));

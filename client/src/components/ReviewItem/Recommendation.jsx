@@ -14,7 +14,7 @@ function Recommendation(props) {
                 {", "}
             </dt>
             <dd className={`contentDataValue2 ${styles.contentDataValue2}`}>
-                I {props.overall < 3 ? "d' nay" : ''} recommend this product
+                I {props.overall < 4 ? "d' nay" : ''} recommend this product
             </dd>
         </dl>
     )
