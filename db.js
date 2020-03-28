@@ -7,7 +7,7 @@ const { seedData } = require('./dbseed')
 const reviewSchema = new mongoose.Schema({
     "image": Array,
     "overall": Number,
-    "vote": String,
+    "vote": {type: String, default: "0"},
     "verified": Boolean,
     "reviewTime": String,
     "reviewerID": String,
@@ -18,7 +18,8 @@ const reviewSchema = new mongoose.Schema({
     "summary": String,
     "unixReviewTime": Number,
     "sweepstakes": Boolean,
-    "authorCount": Number
+    "authorCount": { type: Number, default: 0 },
+    "ship": { type: String, default: 'None'}
 
 });
 
@@ -28,7 +29,7 @@ Review = mongoose.model('Review', reviewSchema);
 
 
 Product = mongoose.model('Product', reviewSchema);
-
+// mongoose.connect('mongodb://localhost/app', { useNewUrlParser: true });
 mongoose.connect('mongodb://mongo:27017/app', { useNewUrlParser: true });
 const db = mongoose.connection;
 

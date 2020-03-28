@@ -4,8 +4,10 @@ import StarRating from "../StarRating/StarRating"
 import Badge from "./Badge"
 import ContentDetails from "./ContentDetails"
 import FeedbackVote from "../FeedbackVote/FeedbackVote"
+import Moment from "react-moment"
 
 function AuthorProfileOffset(props) {
+    // const date = new Date()
     return (
         <div className={`contentItemAuthorProfileOffset2 ${styles.contentItemAuthorProfileOffset2}`}>
             <div className={`contentContainer2 ${styles.contentContainer2}`}>
@@ -28,7 +30,7 @@ function AuthorProfileOffset(props) {
                                                     ·
                                             </span>
                                                 <span className={`contentDateTimeStamp2 ${styles.contentDateTimeStamp2}`}>
-                                                    {props.review.reviewTime} &nbsp;
+                                                    <Moment parse="MM-DD,YYYY" fromNow >{props.review.reviewTime} &nbsp;</Moment>
                                             </span>
                                             </div>
                                         </div>
@@ -42,7 +44,7 @@ function AuthorProfileOffset(props) {
                             </div>
                         </div>
                     </div>
-                    <ContentDetails reviewText={props.review.reviewText} images={props.review.image} overall={props.review.overall} />
+                    <ContentDetails reviewText={props.review.reviewText} images={props.review.image} overall={props.review.overall} ship={props.review.ship} />
                 </div>
             </div>
             <div className={`contentActionsContainer2 ${styles.contentActionsContainer2}`}>

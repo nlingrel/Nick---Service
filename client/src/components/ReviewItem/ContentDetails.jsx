@@ -20,7 +20,7 @@ function ContentDetails(props) {
                                   </span>
                                 </dt>
                                 <dd className={`contentDataValue2 ${styles.contentDataValue2}`}>
-                                    2007 Lorem Ipsum Toyota yaris
+                                    {props.ship}
                                 </dd>
                             </dl>
                         </div>

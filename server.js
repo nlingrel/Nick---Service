@@ -6,7 +6,7 @@ const dbHelp = require('./dbHelperFunctions')
 const app = express()
 const port = 8084
 const Review = require('./db')
-
+const cors = require('cors')
 const pirateSpeak = require('pirate-speak')
 const piratize = require('./piratize')
 
@@ -14,7 +14,7 @@ const piratize = require('./piratize')
 
 
 piratize.addToDictionary()
-// app.use(cors())
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
@@ -62,7 +62,9 @@ app.get('/', (req, res) => res.send('Review service'))
 
 
 app.get('/reviews', (req, res, next) => {
-  
+    console.log(dbHelp.randomYear())
+    console.log(dbHelp.randomShip())
+    console.log(dbHelp.randomName())
     const page = parseInt(req.query.page)
     const overall = parseInt(req.query.overall)
     const queryOptions = { asin: req.query.productID }
@@ -102,15 +104,17 @@ app.get('/reviews', (req, res, next) => {
         results[0].reviewCountByRating = reviewCountByRating;
         return results[0] 
     })
-    // .then(results => {
+    .then(async results => {
+        // console.log('results before map=======',results.docs)
         
+        for(var i = 0; i < results.docs.length; i++){
+            results.docs[i].authorCount = await db.Review.count({ reviewerID: results.docs[i].reviewerID})
+            results.docs[i].ship = `${dbHelp.randomYear()} ${dbHelp.randomName()} ${dbHelp.randomShip()}`
+        }
+       
+        return results;
         
-        
-    //     return results.docs.map( review => {
-    //         review.authorCount = Review.count({ reviewerID: review.reviewerID})
-    //     })
-        
-    // })
+    })
     .then(results => {
             results.docs.map(review => {
                 review.reviewText = pirateSpeak.translate(review.reviewText)

@@ -19,18 +19,18 @@ function AuthorProfile(props) {
                         <ul className={`authorUserStatsList2 ${styles.authorUserStatsList2}`}>
                             <li className={`authorUserStatsReviews2 ${styles.authorUserStatsReviews2}`}>
                                 <span className={`authorUserStatsData2 ${styles.authorUserStatsData2}`}>
-                                    Reviews 
+                                    Reviews {' '}
                                         </span>
                                 <span className={`${styles.authorUserStatsValue2}`}>
-                                    1
+                                    {props.review.authorCount}
                                         </span>
                             </li>
                             <li className={`authorUserStatesVotes2 ${styles.authorUserStatesVotes2}`}>
                                 <span className={`authorUserStatsData2 ${styles.authorUserStatsData2}`}>
-                                    Votes
+                                    Votes {' '}
                                         </span>
                                 <span className={`authorUserStatsValue2 ${styles.authorUserStatsValue2}`}>
-                                    5
+                                    {parseInt(props.review.vote)}
                                         </span>
 
                             </li>

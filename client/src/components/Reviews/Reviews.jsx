@@ -26,8 +26,8 @@ class Reviews extends React.Component {
         true: 'Reviews',
         false: 'Review'
       },
-      products: [],
-      product: 'B00000J421',
+      products: { 1: 'B00002N57X', 2: 'B00004RB1U', 3: 'B00000J421'},
+      product: 'B00004RB1U',
       page: 1,
       pages: 1,
       reviews: [],

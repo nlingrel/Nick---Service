@@ -1,3 +1,5 @@
+const moniker = require('moniker')
+
 const dummyReferences = [{ productID: 1, name: "cannon", image: "https://cdn.shopify.com/s/files/1/0068/3370/0916/products/pirate-canon-life-size-replica-2_1024x1024.jpg?v=1571279010" },
 { productID: 2, name: "sail", image: "https://www.nicepng.com/png/full/404-4044124_module-pirate-sail-power-sail-galleon.png" },
 { productID: 3, name: "wheel", image: "https://images-na.ssl-images-amazon.com/images/I/71JeDEZd4YL._AC_SL1500_.jpg" },
@@ -31,6 +33,29 @@ const dummyReferences = [{ productID: 1, name: "cannon", image: "https://cdn.sho
 { productID: 31, name: "skull eye patch", image: "https://www.partyvalue.com/media/product/082/pirate-eye-patch-1ct-c50.jpg" },
 { productID: 32, name: "hat with feather", image: "https://images-na.ssl-images-amazon.com/images/I/710ecn%2BKlwL._AC_SL1300_.jpg" }]
 
+const shipTypes = {
+  1 : 'Barkadeer',
+  2 : 'Barque',
+  3 : 'Brigantine',
+  4 : 'Clipper',
+  5 : 'Cog',
+  6 : 'Galleon',
+  7 : 'Gally',
+  8 : 'Hulk',
+  9 : 'Jolly Boat',
+  10 : 'Long Boat',
+  11 : 'Lugger',
+  12 : "Man 'o War",
+  13 : 'Pink',
+  14 : 'Pinnance',
+  15 : 'Pirogue',
+  16 : 'Plate Fleet',
+  17 : 'Schooner',
+  18 : 'Sloop',
+  19 : 'Snow',
+  20 : 'Tender',
+  21 : 'Wherry',
+  22 : 'Yawl' }
 
 function badgify(review) {
     //charcode reveiwerID[3] + charcode asin[4]
@@ -53,6 +78,19 @@ function findRatio(ratingObj){
   return ratio.toFixed(1);
 }
 
+function randomYear(){
+  
+  return "20" + Math.floor(Math.random() * 2).toString() + Math.floor(Math.random() * 9).toString()
+}
+function randomShip(){
+  return shipTypes[Math.floor(Math.random() * 22)]
+}
+
+function randomName(){
+  let name = moniker.adjective().choose().split('')
+  name[0] = name[0].toUpperCase()
+  return name.join('')
+}
 // async function getCounts(id){
   
 // }
@@ -61,3 +99,6 @@ function findRatio(ratingObj){
 
 module.exports.badgify = badgify
 module.exports.findRatio = findRatio
+module.exports.randomYear = randomYear
+module.exports.randomShip = randomShip
+module.exports.randomName = randomName
