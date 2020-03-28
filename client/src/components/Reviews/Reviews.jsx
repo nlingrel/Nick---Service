@@ -27,7 +27,8 @@ class Reviews extends React.Component {
         false: 'Review'
       },
       products: { 1: 'B00002N57X', 2: 'B00004RB1U', 3: 'B00000J421'},
-      product: 'B00004RB1U',
+      product: 'B00002N57X',
+      productID: 1,
       page: 1,
       pages: 1,
       reviews: [],
@@ -42,6 +43,9 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
+    setInterval(()=>{
+      this.updateProduct();}
+      ,1000)
 
     window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${this.state.page}&overall=${this.state.overall}`)
       .then(res => res.json())
@@ -64,7 +68,19 @@ class Reviews extends React.Component {
           });
         }
       )
+      
   }
+
+  updateProduct(){
+   let id =  localStorage.getItem('productID')
+   if(id !== this.state.productID){
+     this.setState({
+       productID: id,
+       product: this.state.products[productID]
+     })
+   }
+  }
+
   getPage(page, overall = this.state.overall) {
     window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${page}&overall=${overall}`)
       .then(res => res.json())
