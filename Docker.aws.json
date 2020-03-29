@@ -1,0 +1,11 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+      "Name": "nlingrel/fec_reviews"
+    },
+    "Ports": [
+      {
+        "ContainerPort": "8084"
+      }
+    ]
+  }
