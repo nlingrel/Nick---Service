@@ -47,7 +47,10 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
-    this.updateProduct()
+    setInterval( ()=>{
+    
+      this.updateProduct()}
+      ,500)
     
      
       this.getAllReviews()
@@ -79,7 +82,7 @@ class Reviews extends React.Component {
     window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${this.state.page}&overall=${this.state.overall}`)
     .then(res => res.json())
     .then((result) => {
-      console.log(result)
+      // console.log(result)
       this.setState({
         reviews: result.docs,
         page: result.page,
@@ -102,8 +105,8 @@ class Reviews extends React.Component {
   updateProduct(){
     const products = this.state.products;
     var nickId = localStorage.getItem('productID');
-    console.log('nickID====', nickId)
-    console.log('productID in state===', this.state.productID)
+    // console.log('nickID====', nickId)
+    // console.log('productID in state===', this.state.productID)
       if (nickId > 5){
         nickId = 5;
       }
@@ -115,10 +118,7 @@ class Reviews extends React.Component {
         })
         this.getAllReviews()
       }
-      setInterval( ()=>{
-    
-        this.updateProduct()}
-        ,333)
+      
     }
    
      
@@ -169,7 +169,7 @@ class Reviews extends React.Component {
 
   previousPage(event) {
     event.preventDefault()
-    console.log('Should go to previous page')
+    // console.log('Should go to previous page')
     if (this.state.page > 1) {
       this.getPage(this.state.page - 1)
     }
