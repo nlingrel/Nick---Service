@@ -5,7 +5,7 @@ const db = require('./db')
 const dbHelp = require('./dbHelperFunctions')
 const app = express()
 const port = 8084
-const Review = require('./db')
+const {Review} = require('./db')
 const cors = require('cors')
 const pirateSpeak = require('pirate-speak')
 const piratize = require('./piratize')
@@ -68,7 +68,8 @@ app.get('/reviews', (req, res, next) => {
     const page = parseInt(req.query.page)
     const overall = parseInt(req.query.overall)
     const queryOptions = { asin: req.query.productID }
-      if (overall < 6) {
+    console.log('productID at /reviews',req.query.productID) 
+    if (overall < 6) {
           queryOptions.overall = overall
       }
     const reviewCountByRating = {
@@ -154,6 +155,39 @@ app.get('/reviewer', (req, res, next) => {
     })  
 
 });
+app.use(bodyParser.json())
+app.post('/reviews/review', (req,res, next) => {
+    // console.log(('this is req body -=-=-=',req.body))
+    let vote = parseInt(req.body.vote)
+    let id = req.body._id;
+    // console.log('this is the id in post&&&&&&',id)
+    if(req.body.yes){
+      vote += 1
+    }else{
+        vote > 0? vote -= 1 : vote = vote 
+    }
+    db.Review.findByIdAndUpdate( {id} , {vote : vote.toString()}, (err,result) => {
+        if(err){
+            res.json({error: err})
+        }else{
+            res.status(201).send('sent')
+        }
+    })
+    
+    
+   
+    
+})
+// .then(res => {
+//     res.status(201).send(req)
+// })
+// .catch(err =>{
+//     console.error(err)
+//         res.status(500).json({ error: err })
+// })
+
+
+
 
         
 app.listen(port, () => console.log(`Service listening on port ${port}!`))

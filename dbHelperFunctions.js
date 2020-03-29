@@ -59,7 +59,9 @@ const shipTypes = {
 
 function badgify(review) {
     //charcode reveiwerID[3] + charcode asin[4]
-    return ((review.reviewerID.charCodeAt(3) + review.reviewerName.charCodeAt(4) / 2 >= 50))
+    let babyHash = (review.reviewerID.charCodeAt(3) + review.reviewerName.charCodeAt(4))/ 2
+    console.log('babyHash ======', babyHash)
+    return babyHash >= 85
 }
 
 function findRatio(ratingObj){

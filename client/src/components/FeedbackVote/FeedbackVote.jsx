@@ -14,6 +14,7 @@ function FeedbackVote(props) {
                     <button className={`contentFeedbackButtonYes2 ${styles.contentFeedbackButtonYes2}`}
                         type="button"
                         label={`${0} people found this review helpful`}
+                        onClick={props.vote}
                     >
                         <span>
                             Yes ·
@@ -25,6 +26,7 @@ function FeedbackVote(props) {
                     <button className={`contentFeedbackButtonNo2 ${styles.contentFeedbackButtonNo2}`}
                         type="button"
                         label={`${0} people did not find this review helpful`}
+                        onClick={props.vote}
                     >
                         <span>
                             No ·

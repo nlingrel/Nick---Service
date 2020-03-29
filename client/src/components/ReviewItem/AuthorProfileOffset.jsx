@@ -48,7 +48,7 @@ function AuthorProfileOffset(props) {
                 </div>
             </div>
             <div className={`contentActionsContainer2 ${styles.contentActionsContainer2}`}>
-                <FeedbackVote />
+                <FeedbackVote vote={props.vote}/>
             </div>
             <div className={`inlineFormContainer2 ${styles.inlineFormContainer2}`}></div>
             <div className={`scondaryContentList2 ${styles.scondaryContentList2}`}>

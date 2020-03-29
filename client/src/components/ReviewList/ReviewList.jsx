@@ -14,7 +14,7 @@ class ReviewList extends React.Component {
 
     render() {
         const items = this.props.reviews.map((review) => {
-            return <ReviewItem key={review._id} review={review} rating={review.overall}/>
+            return <ReviewItem key={review._id} review={review} rating={review.overall} vote={this.props.vote}/>
         })
         return (
             <ol className={`contentListReviews2 ${styles.contentListReviews2}`}>

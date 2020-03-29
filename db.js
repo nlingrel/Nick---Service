@@ -5,6 +5,7 @@ const { seedData } = require('./dbseed')
 
 
 const reviewSchema = new mongoose.Schema({
+    "_id" : mongoose.Schema.ObjectId,
     "image": Array,
     "overall": Number,
     "vote": {type: String, default: "0"},

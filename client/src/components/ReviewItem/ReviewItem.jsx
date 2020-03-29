@@ -49,7 +49,7 @@ class ReviewItem extends React.Component {
         return (
             <li className={`reviewContentItem2 ${styles.reviewContentItem2}`}>
                 <AuthorProfile review={this.props.review} />
-                <AuthorProfileOffset badges={this.state.badges} ratio={this.props.review.overall} review={this.props.review} />
+                <AuthorProfileOffset badges={this.state.badges} ratio={this.props.review.overall} review={this.props.review} vote={this.props.vote} />
             </li>
         );
 
