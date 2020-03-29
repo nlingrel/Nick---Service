@@ -118,7 +118,7 @@ class Reviews extends React.Component {
       setInterval( ()=>{
     
         this.updateProduct()}
-        ,1000)
+        ,333)
     }
    
      
