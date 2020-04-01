@@ -53,33 +53,34 @@ class Reviews extends React.Component {
       ,500)
     
      
-      this.getAllReviews()
-    // window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${this.state.page}&overall=${this.state.overall}`)
-    //   .then(res => res.json())
-    //   .then((result) => {
-    //     console.log(result)
-    //     this.setState({
-    //       reviews: result.docs,
-    //       page: result.page,
-    //       pages: result.pages,
-    //       total: result.total,
-    //       filterCount: result.total,
-    //       mounted: true,
-    //       ratio: result.reviewCountByRating.ratio,
-    //       reviewCountByRating: result.reviewCountByRating
-    //     })
-    //   },
-    //     error => {
-    //       this.setState({
-    //         error
-    //       });
-    //     }
-    //   )
+      // this.getAllReviews()
+    window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${this.state.page}&overall=${this.state.overall}`)
+      .then(res => res.json())
+      .then((result) => {
+        console.log(result)
+        this.setState({
+          reviews: result.docs,
+          page: result.page,
+          pages: result.pages,
+          total: result.total,
+          filterCount: result.total,
+          mounted: true,
+          ratio: result.reviewCountByRating.ratio,
+          reviewCountByRating: result.reviewCountByRating
+        })
+      },
+        error => {
+          this.setState({
+            error
+          });
+        }
+      )
       
   }
   
   getAllReviews(){
-    window.fetch(`http://nickawsreviews-env.eba-dpzr4t2m.us-east-2.elasticbeanstalk.com/reviews?productID=${this.state.product}&page=${this.state.page}&overall=${this.state.overall}`)
+    // window.fetch(`http://nickawsreviews-env.eba-dpzr4t2m.us-east-2.elasticbeanstalk.com/reviews?productID=${this.state.product}&page=${this.state.page}&overall=${this.state.overall}`)
+    window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${this.state.page}&overall=${this.state.overall}`)
     .then(res => res.json())
     .then((result) => {
       // console.log(result)
@@ -125,7 +126,9 @@ class Reviews extends React.Component {
   
 
   getPage(page, overall = this.state.overall) {
-    window.fetch(`http://nickawsreviews-env.eba-dpzr4t2m.us-east-2.elasticbeanstalk.com/reviews?productID=${this.state.product}&page=${page}&overall=${overall}`)
+    // window.fetch(`http://nickawsreviews-env.eba-dpzr4t2m.us-east-2.elasticbeanstalk.com/reviews?productID=${this.state.product}&page=${page}&overall=${overall}`)
+    window.fetch(`http://localhost:8084/reviews?productID=${this.state.product}&page=${page}&overall=${overall}`)
+    // http://localhost:8084/reviews
       .then(res => res.json())
       .then((result) => {
         // console.log(result)

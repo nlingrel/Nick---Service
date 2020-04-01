@@ -30,8 +30,8 @@ Review = mongoose.model('Review', reviewSchema);
 
 
 Product = mongoose.model('Product', reviewSchema);
-// mongoose.connect('mongodb://localhost/app', { useNewUrlParser: true });
-mongoose.connect('mongodb+srv://review_service:hratx47hratx47@nickcluster-t7eil.gcp.mongodb.net/fec_review_service?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect('mongodb://mongo:27017/app', { useNewUrlParser: true });
+//mongoose.connect('mongodb+srv://review_service:hratx47hratx47@nickcluster-t7eil.gcp.mongodb.net/fec_review_service?retryWrites=true&w=majority', { useNewUrlParser: true });
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -40,27 +40,27 @@ db.once('open', function () {
 
   console.log('db connection open')
 
-  // mongoose.connection.db.listCollections({name: 'reviews'}).toArray(function(err, items){
-  //   let exist = items.length > 0;  
-  //   console.log('Does it exist?', exist)
-  //     if(exist){
-  //       db.dropCollection("reviews", function (err, result) {
-  //         if (err) {
-  //               console.log("error delete collection");
-  //         }
-  //       })
-  //     }
-  //
-    // 
-  //     Review.insertMany(seedData)
-  //     .then(function(mongooseDocuments) {
-  //          console.log('inserting documents')
-  //     })
-  //     .catch(function(err) {
-  //         console.log(err)
-  //     });
+  mongoose.connection.db.listCollections({name: 'reviews'}).toArray(function(err, items){
+    let exist = items.length > 0;  
+    console.log('Does it exist?', exist)
+      if(exist){
+        db.dropCollection("reviews", function (err, result) {
+          if (err) {
+                console.log("error delete collection");
+          }
+        })
+      }
+  
+    
+      Review.insertMany(seedData)
+      .then(function(mongooseDocuments) {
+           console.log('inserting documents')
+      })
+      .catch(function(err) {
+          console.log(err)
+      });
 
-  // })
+  })
 
 });
   
